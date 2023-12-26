@@ -1,14 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.db.models import Q, F, Value, Func, ExpressionWrapper, DecimalField
+from django.db.models.functions import Concat
+from django.db.models.aggregates import Sum, Max, Min, Avg, Count
+from django.contrib.contenttypes.models import ContentType
+from django.db import transaction
 
 
-def calculate():
-    x = 1
-    y = 2
-    return x
+from store.models import OrderItem, Product, Order, Customer, Collection
+from tags.models import TaggedItem
 
 
 def say_hello(request):
-    x = calculate()
 
     return render(request, 'hello.html', {'name': 'Mosh'})
