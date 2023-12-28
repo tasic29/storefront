@@ -7,6 +7,9 @@ from store.models import Product
 class Tag(models.Model):
     label = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return self.label
+
 
 class TaggedItemManager(models.Manager):
     def get_tags_for(self, obj_type, obj_id):
